@@ -1,12 +1,14 @@
 package com.balarinfotech.book.service.impl;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.balarinfotech.book.models.TblBook;
+import com.balarinfotech.book.models.TblBookCategory;
 import com.balarinfotech.book.repository.BookRepository;
 import com.balarinfotech.book.service.BookService;
 
@@ -40,6 +42,11 @@ public class BookServiceImpl implements BookService {
 	public void deleteBookById(Long bookId) {
 		this.bookRepository.deleteById(bookId);
 
+	}
+
+	@Override
+	public List<TblBook> getBooksOfCategory(TblBookCategory tblCategorie) {
+		return this.bookRepository.findByTblBookCategory(tblCategorie);
 	}
 
 }

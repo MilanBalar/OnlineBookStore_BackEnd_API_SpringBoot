@@ -1,5 +1,7 @@
 package com.balarinfotech.book.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.balarinfotech.book.models.TblBook;
+import com.balarinfotech.book.models.TblBookCategory;
 import com.balarinfotech.book.service.BookService;
 
 @RestController
@@ -55,7 +58,13 @@ public class BookController {
 		this.bookService.deleteBookById(bookId);
 	}
 	
-
+	//get books by category id
+	@GetMapping("/category/{catId}")
+	public List<TblBook> getQuizzesByCategoryId(@PathVariable("catId") Long catId) {
+		TblBookCategory tblCategorie = new TblBookCategory();
+		tblCategorie.setCatId(catId);
+		return this.bookService.getBooksOfCategory(tblCategorie);
+	}
 
 
 
